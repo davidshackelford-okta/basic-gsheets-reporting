@@ -1,13 +1,13 @@
 # Excel Online Report Creation
 
 
-## <span style="text-decoration:underline;">Overview</span>
+## Overview
 
-File download: [suspendedUserGoogleSheets.flopack](https://drive.google.com/file/d/10xefQtOeZ65263lOxnQzI8KwHWljCaoS/view?usp=sharing)
+File download: [suspendedUserGoogleSheets.flopack](https://drive.google.com/file/d/1TeIlTQeKu1XYfoiFIaAH_o-heUQRmj5k/view?usp=sharing)
 
 This is a sample flow for generating a simple spreadsheet report using Okta system log events. We’ll use user suspension as an example, but any event works.
 
-<span style="text-decoration:underline;">Before you get Started / Prerequisites</span>
+### Prerequisites
 
 Before you get started, here are the things you’ll need:
 
