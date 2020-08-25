@@ -1,18 +1,18 @@
 {
-   "name": "suspend_inactive_users",
-   "title": "Suspend Inactive Users",
-   "description": "In many organizations, access tends to proliferate for far longer than certain users require it. Maybe you’re working with a contractor who needs access to a single app, or offboarding policies break down for an ex-employee. All of a sudden, you realize that the user hasn’t logged in for months, and as part of a strong security posture, would like to suspend them until you’re notified that they do actually need access. This flow reads all active users in your environment, and if they haven’t logged in within the past 6 months (180 days), suspends them.",
+   "name": "basic_gsheet_recording",
+   "title": "Basic Reporting with Google Sheets",
+   "description": "Many organizations have custom, org-specific needs to report on particular lifecycle events and share that data with others in the organization. Okta's System Log is powerful but limited to Okta admins, and also does not allow for scheduled reports. This workflow demonstrates building a custom report in an online spreadsheet (using a "user suspended" event, and then sharing that report with stakeholders when the event occurs.",
    "connectors": [
-      "okta"
+      "okta", "google sheets", "gmail"
    ],
    "links": [
       {
          "title": "Video Walk-through",
-         "destination": "https://www.youtube.com/watch?v=AsmGjBjwCps"
+         "destination": "TODO"
       },
       {
          "title": "Setup Documentation",
-         "destination": "https://github.com/arvilnagpal-okta/suspend-inactive-users/blob/master/readme.md"
+         "destination": "https://github.com/davidshackelford-okta/basic-gsheets-reporting/suspend-inactive-users/blob/master/readme.md"
       }
    ]
 }
