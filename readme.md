@@ -1,49 +1,52 @@
-## Inactivity-based Suspension
+# Excel Online Report Creation
 
 
-### <span style="text-decoration:underline;">Overview</span>
+## <span style="text-decoration:underline;">Overview</span>
 
-In many organizations, access tends to proliferate for far longer than certain users require it. Maybe you’re working with a contractor who needs access to a single app, or offboarding policies break down for an ex-employee. All of a sudden, you realize that the user hasn’t logged in for months, and as part of a strong security posture, would like to suspend them until you’re notified that they do actually need access. 
+File download: [suspendedUserGoogleSheets.flopack](https://drive.google.com/file/d/10xefQtOeZ65263lOxnQzI8KwHWljCaoS/view?usp=sharing)
 
-This flow reads all active users in your environment, and if they haven’t logged in within the past 6 months (180 days), suspends them.   
+This is a sample flow for generating a simple spreadsheet report using Okta system log events. We’ll use user suspension as an example, but any event works.
 
+<span style="text-decoration:underline;">Before you get Started / Prerequisites</span>
 
-### <span style="text-decoration:underline;">Before you get Started / Prerequisites</span>
-
-Before you get started, you will need:
+Before you get started, here are the things you’ll need:
 
 
 
 *   Access to an Okta tenant with Okta Workflows enabled for your org 
-*   Active users
-*   One of the active users needs to have not logged in for the past 180 days; if you don’t have a user with “inactivity”, you can simply edit the flow for a different date range (eg 5 minutes for a recently created user)
+*   Access to a Google Docs tenant
+*   A user who can be suspended
 
+<span style="text-decoration:underline;">Setup Steps</span>
 
-### <span style="text-decoration:underline;">Setup Steps</span>
-
-
-
-1. Select the parent flow titled “Inactivity-based Suspension - Parent Flow” 
-    1. Make sure a connection is selected for the “List Users with Filter” card. 
-    2. The only input should be Status, with “Active” selected as the value. 
-2. Open the child flow, “Inactivity-based Suspension - Child Flow” in a new tab. 
-    3. Scroll to the right, and make sure a connection is selected for “Okta - Suspend User”. 
-3. Turn both the parent and child flow on. 
-
-
-### <span style="text-decoration:underline;">Testing this Flow</span>
+This is where you put the step-by-step instructions for how someone might set up this flow. 
 
 
 
-1. Go to the parent flow, and click Test Flow in the toolbar. 
-    1. Click Flow History and make sure everything succeeded. 
-2. Go to the child flow and select Flow History. You should see an execution for each user in your org. 
-3. For those Okta users that you expected to be suspended (e.g. they hadn’t logged in for longer than 180 days), go to your Okta console and confirm that they are suspended. 
+1. Select the “Suspended Users Google Sheets Report” flow from the folder.
+2. If you have not already done so, authorize the connections to Google Sheets, Gmail, and Okta. 
+3. Create a new spreadsheet in Google Sheets with the column headers “Display Name,”	“Alternate ID”, and “Time” in one of its sheets.
+4. Select the spreadsheet and worksheet in the “Create Row” Google Sheets connector. 
+5. Select the spreadsheet in the Read Worksheet info card.
+6. Enter one or more email addresses in the “Send Email” card.
+7. Click Save. Be sure to select “Save All Data.”
+8. In the top toolbar of the Workflow console, toggle the “Flow is OFF” switch to “ON” 
+
+<span style="text-decoration:underline;">Testing this Flow</span>
+
+This is how a builder might test the flow. Here’s what it will look like when it’s working. 
 
 
-### <span style="text-decoration:underline;">Limitations & Known Issues</span>
+
+1. Go into your Okta tenant and suspend a user    
+2. Open your flow and view Flow History. You should see a successful flow run.
+3. View the spreadsheet you connected. You should see an additional row with the suspended user’s name, Okta username, and a timestamp.
+4. Look at the inbox of the email address you sent the notification to. You should see a notification email about the user suspension with a link to the spreadsheet.
+
+<span style="text-decoration:underline;">Limitations & Known Issues</span>
+
+This is where you might note to the customer any known issues, edge cases, or gotchas as they think about using the flow in a real-life scenario. 
 
 
 
-*   If you have a user that has never logged in (LastLogin = null), then the flow will fail. If you’d like to skip errors, you can replace the “List For Each” with “List For Each - Ignore Errors”. 
-*   If you have a large number of users (50k+), we’d highly recommend breaking your List Users call into multiple groups of users. That could be individual Groups (using List Group Members), or based on some type of unique category (like their office location). 
+*   If extending this flow to work with other Okta events, please note that only a subset of System Log events are available in the Okta connector.
